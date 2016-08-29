@@ -16,6 +16,8 @@ namespace ForTestingFrameWork
 
         [OperationContract]
         List<Album> GetAlbumsByArtist(string name);
+
+        int AddTwoNumbers(int x, int y);
     }
 
 

@@ -41,6 +41,31 @@ namespace ForTestingFrameWork.Tests
             }
         }
 
+        [TestMethod]
+        public void TestForAddition()
+        {
+            using (ShimsContext.Create())
+            {
+                var expectedResult = 5;
+                // Arrange:
+                // Detour DateTime.Now to return a fixed date:
+                Logging.Fakes.ShimMusic.AllInstances.AddInt32Int32 =
+                (x,y,z) =>
+                {
+                    return z+y; 
+                };
+                
+                var service = new Service1();
+
+                // Act:
+                var actualResult = service.AddTwoNumbers(1,2);
+
+                // Assert: 
+                Assert.AreEqual(expectedResult, actualResult);
+            }
+        }
+
+
         private List<Album> GetOtherAlbums()
         {
             Random ran = new Random();
